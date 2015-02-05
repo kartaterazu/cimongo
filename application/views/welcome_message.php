@@ -8,11 +8,11 @@
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
 			Add new data
 		</a>
-		<form class="form-inline pull-right">
+		<form class="form-inline pull-right" method="POST">
 		  <div class="form-group">
 		    <label class="sr-only" for="search">Amount (in dollars)</label>
 		    <div class="input-group">
-		      <input type="text" class="form-control" id="search" placeholder="Ketik Pencarian">
+		      <input type="text" class="form-control" name="search" id="search" placeholder="Ketik Pencarian">
 		      <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
 		    </div>
 		  </div>

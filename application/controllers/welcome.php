@@ -14,9 +14,14 @@ class Welcome extends CI_Controller {
 	
 	public function view()
 	{
-		$keyword=$this->uri->segment(3)?urldecode($this->uri->segment(3)):0;
+		$keyword=$this->input->post("search")?$this->input->post("search"):0;
 		$offset=$this->uri->segment(4)?urldecode($this->uri->segment(4)):0;
-		$result = $this->cimongo->get("user")->num_rows();
+		if($keyword!=""){
+			$result = $this->cimongo->like("nama",$keyword)->get("user")->num_rows();
+		}else{
+			$result = $this->cimongo->get("user")->num_rows();
+		}
+		
 		//$this->db->start_cache();
 		$config['uri_segment'] = 4;
 		$config['full_tag_open'] = '<ul class="pagination">';
@@ -35,7 +40,12 @@ class Welcome extends CI_Controller {
 		$config['total_rows'] =$result;
 		$config['per_page'] = 5;
 		$this->pagination->initialize($config);
-		$content = $this->cimongo->get("user",$config['per_page'],$offset)->result_array();
+		
+		if($keyword!=""){
+			$content = $this->cimongo->like("nama",$keyword)->get("user",$config['per_page'],$offset)->result_array();
+		}else{
+			$content = $this->cimongo->get("user",$config['per_page'],$offset)->result_array();
+		}
 		//$this->db->stop_cache();
 		
 		$data['hal']=$this->pagination->create_links();
