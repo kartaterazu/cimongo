@@ -9,6 +9,11 @@
 	
 	<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript" src="<?= base_url() ?>assets/js/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+		})
+	</script>
 
 	<style type="text/css">
 

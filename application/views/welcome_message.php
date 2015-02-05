@@ -9,14 +9,14 @@
 			Add new data
 		</a>
 		<form class="form-inline pull-right" method="POST">
-		  <div class="form-group">
-		    <label class="sr-only" for="search">Amount (in dollars)</label>
-		    <div class="input-group">
-		      <input type="text" class="form-control" name="search" id="search" placeholder="Ketik Pencarian">
-		      <div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
-		    </div>
-		  </div>
-		  <button type="submit" class="btn btn-primary">Cari</button>
+			<div class="form-group">
+			    <label class="sr-only" for="search">Search Button</label>
+			    <div class="input-group">
+			    	<input type="text" class="form-control" name="search" id="search" placeholder="Ketik Pencarian" data-toggle="tooltip" data-placement="bottom" title="Ketik pencarian lalu tekan enter">
+			    	<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+			    </div>
+			</div>
+		  <!--<button type="submit" class="btn btn-primary">Cari</button>-->
 		</form>
 		<br /><br />
 		<table class="table table-responsive table-striped table-bordered table-hover">
