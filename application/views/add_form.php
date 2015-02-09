@@ -1,32 +1,41 @@
+<?php
+$segment3 = $this->uri->segment(3);
+$segment4 = $this->uri->segment(4);
+$segment5 = $this->uri->segment(5);
+?>
 <div id="container">
-	<h1>CodeIgniter with MongoDB Database
-		<a class="btn btn-primary pull-right" href="<?= site_url() ?>/welcome/">
-			<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> Kembali
-		</a>
-	</h1>
+	<div id="lang" class="pull-right">
+		<?= $this->lang->line('lang_title'); ?> : 
+		<a href="<?= site_url() ?>/welcome/add/<?= $segment3 ?>/en/<?= $segment5 ?>/">English</a> |
+		<a href="<?= site_url() ?>/welcome/add/<?= $segment3 ?>/id/<?= $segment5 ?>/">Indonesia</a>
+	</div>
+	<h1>CodeIgniter <?= $this->lang->line('title_separator'); ?> MongoDB <?= $this->lang->line('database'); ?></h1>
 
 	<div id="body">
 		<div id="content"><?= (!empty($content)?$content:'')?></div>
 		<div class="row">
-			<div class="col-md-3">
-				<form name="addData" method="POST" action="<?= site_url() ?>/welcome/save">
+			<form name="addData" method="POST" action="<?= site_url() ?>/welcome/save">
+				<div class="col-md-3">
 					<div class="form-group">
-						<label for="nama">Nama</label>
-						<input class="form-control" type="text" name="nama" placeholder="Masukan Nama Anda" value=""/>
+						<label for="nama"><?= $this->lang->line('tabel_name'); ?></label>
+						<input class="form-control" type="text" name="nama" placeholder="<?= $this->lang->line('input_nama_pl'); ?>" value=""/>
 					</div>
 					<div class="form-group">
-						<label for="alamat">Alamat</label>
-						<input class="form-control" type="text" name="alamat" placeholder="Masukan Alamat Anda" value=""/>
+						<label for="alamat"><?= $this->lang->line('tabel_address'); ?></label>
+						<input class="form-control" type="text" name="alamat" placeholder="<?= $this->lang->line('input_address_pl'); ?>" value=""/>
 					</div>
 					<div class="form-group">
-						<label for="hobi">Hobi</label>
-						<input class="form-control" type="text" name="hobi" placeholder="Masukan Hobi Anda" value=""/>
+						<label for="hobi"><?= $this->lang->line('tabel_hobby'); ?></label>
+						<input class="form-control" type="text" name="hobi" placeholder="<?= $this->lang->line('input_hobby_pl'); ?>" value=""/>
 					</div>
 					<div class="form-group">
-						<input class="btn btn-primary" type="submit" name="submit" value="Simpan"/>
+						<input class="btn btn-primary" type="submit" name="submit" value="<?= $this->lang->line('save_button'); ?>"/>
+						<a class="btn btn-default" href="<?= site_url() ?>/welcome/view/<?= $segment3 ?>/<?= $segment4 ?>/<?= $segment5 ?>/">
+							<span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> <?= $this->lang->line('back_button'); ?>
+						</a>
 					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 </div>

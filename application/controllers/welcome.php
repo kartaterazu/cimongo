@@ -6,6 +6,8 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->library('cimongo/Cimongo');
 		$this->load->library('pagination');
+		$lang = $this->uri->segment(4)=='id'?'indonesia':'english';
+		$this->lang->load('content', $lang);
 	}
 	
 	function index(){
@@ -14,8 +16,11 @@ class Welcome extends CI_Controller {
 	
 	public function view()
 	{
+		$lang = $this->uri->segment(4)=='id'?'indonesia':'english';
+		$langUrl = $this->uri->segment(4);
+		$this->lang->load('content', $lang);
 		$keyword=$this->input->post("search")?$this->input->post("search"):0;
-		$offset=$this->uri->segment(4)?urldecode($this->uri->segment(4)):0;
+		$offset=$this->uri->segment(5)?urldecode($this->uri->segment(5)):0;
 		if($keyword!=""){
 			$result = $this->cimongo->like("nama",$keyword)->get("user")->num_rows();
 		}else{
@@ -23,7 +28,7 @@ class Welcome extends CI_Controller {
 		}
 		
 		//$this->db->start_cache();
-		$config['uri_segment'] = 4;
+		$config['uri_segment'] = 5;
 		$config['full_tag_open'] = '<ul class="pagination">';
 		$config['full_tag_close'] = '</ul>';
 		$config['num_tag_open'] = '<li>';
@@ -36,7 +41,7 @@ class Welcome extends CI_Controller {
 		$config['prev_tag_close'] = '</li>';
 		$config['last_tag_open'] = '<li>';
 		$config['last_tag_close'] = '</li>';
-		$config['base_url'] = site_url()."/welcome/view/".$keyword;
+		$config['base_url'] = site_url()."/welcome/view/".$keyword."/".$langUrl."/";
 		$config['total_rows'] =$result;
 		$config['per_page'] = 5;
 		$this->pagination->initialize($config);
